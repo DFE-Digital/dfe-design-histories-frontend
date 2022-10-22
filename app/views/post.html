@@ -38,7 +38,7 @@
                     <div class="bottom blog-meta">
         <dl>
           <dt>Published:</dt>
-          <dd>{%if data.Publication_date_override%}{{data.Publication_date_override | date('DD MMMM YYYY') }}{%else%}{{data.publishedAt | date('DD MMMM YYYY')}}{%endif%}</dd>
+          <dd>{%if data.Publication_date%}{{data.Publication_date | date('DD MMMM YYYY') }}{%else%}{{data.publishedAt | date('DD MMMM YYYY')}}{%endif%}</dd>
         </dl>
       </div>
                 </div>

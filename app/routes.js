@@ -80,7 +80,7 @@ router.get('/:id', function (req, res) {
 
   var config = {
     method: 'get',
-    url: `${process.env.cmsurl}api/posts?filters[service][slug][\$eq]=${req.params.id}&populate=%2A`,
+    url: `${process.env.cmsurl}api/posts?filters[service][slug][\$eq]=${req.params.id}&sort=Publication_date%3Adesc&populate=%2A`,
     headers: {
       Authorization: 'Bearer ' + process.env.apikey,
     },

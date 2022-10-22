@@ -49,7 +49,7 @@ Posts
                         </h2>
                         <p>{{post.attributes.Lede}}</p>
                         <p class="govuk-body-s">Published: 
-                            {%if post.attributes.Publication_date_override%}{{post.attributes.Publication_date_override | date('DD MMMM YYYY') }}{%else%}{{post.attributes.publishedAt | date('DD MMMM YYYY')}}{%endif%}</p>
+                            {%if post.attributes.Publication_date%}{{post.attributes.Publication_date | date('DD MMMM YYYY') }}{%else%}{{post.attributes.publishedAt | date('DD MMMM YYYY')}}{%endif%}</p>
 
                             <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
