@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+
+{% set data = data
+  .data[0]
+  .attributes %}
+
+{% block pageTitle %}
+  {{data.Title}} - Design Histories
+{% endblock %}
+
+{% block main %}
+
+    <div class="masthead">
+        <div class="govuk-width-container">
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full">
+
+                    <div class="govuk-breadcrumbs">
+                        <ol class="govuk-breadcrumbs__list">
+                            <li class="govuk-breadcrumbs__list-item">
+                                <a class="govuk-breadcrumbs__link" href="/">Home</a>
+                            </li>
+                            <li class="govuk-breadcrumbs__list-item">
+                                <a class="govuk-breadcrumbs__link" href="/{{data.service.data.attributes.Slug}}">{{data.service.data.attributes.Title}}</a>
+                            </li>
+                           
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+                    <span class="govuk-caption-l">Design history</span>
+                    <h1 class="govuk-heading-xl">{{data.Title}}</h1>
+                  
+
+                    <div class="bottom blog-meta">
+        <dl>
+          <dt>Published:</dt>
+          <dd>{%if data.Publication_date_override%}{{data.Publication_date_override | date('DD MMMM YYYY') }}{%else%}{{data.publishedAt | date('DD MMMM YYYY')}}{%endif%}</dd>
+        </dl>
+      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% block content %}
+  <div class="govuk-width-container govuk-!-margin-bottom-9">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+     
+      
+
+    </div>
+    <div class="govuk-grid-column-one-third"></div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+  <p class="govuk-body">{{data.Lede}}</p>
+
+      <section class="dfe-content">
+        {% markdown %}{{data.Body | safe}}{% endmarkdown %}
+      </section>
+
+
+
+    </div>
+    <div class="govuk-grid-column-one-third">
+
+      <aside class="app-related-items" role="complementary">
+        <h2 class="govuk-heading-s" id="subsection-title">
+          {{data.service.data.attributes.Title}}
+        </h2>
+        <p>
+          {{data.service.data.attributes.Description}}
+        </p>
+        <p>
+          <a href="/{{data.service.data.attributes.Slug}}">More posts <span class="govuk-visually-hidden">from {{data.service.data.attributes.Title}}</span></a>
+        </p>
+      </aside>
+
+    </div>
+  </div>
+
+    </div>
+
+{% endblock %}
+
+{% endblock %}

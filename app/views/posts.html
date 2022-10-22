@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Posts
+{% endblock %}
+
+{% block main %}
+
+    <div class="masthead">
+        <div class="govuk-width-container">
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full">
+
+                    <div class="govuk-breadcrumbs">
+                        <ol class="govuk-breadcrumbs__list">
+                            <li class="govuk-breadcrumbs__list-item">
+                                <a class="govuk-breadcrumbs__link" href="/">Home</a>
+                            </li>
+                            <li class="govuk-breadcrumbs__list-item">
+                                <a class="govuk-breadcrumbs__link" href="/{{services.data[0].attributes.Slug}}">{{services.data[0].attributes.Title}}</a>
+                            </li>
+
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+                    <h1 class="govuk-heading-xl">{{services.data[0].attributes.Title}}</h1>
+                    <p>{{services.data[0].attributes.Description}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% block content %}
+
+        <div class="govuk-width-container govuk-!-margin-bottom-9">
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+
+                    <h2 class="govuk-heading-l">Posts</h2>
+                    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+                    {% for post in posts.data %}
+
+                        <h2>
+                            <a href="/{{services.data[0].attributes.Slug}}/{{post.attributes.Slug}}">{{post.attributes.Title}}</a>
+                        </h2>
+                        <p>{{post.attributes.Lede}}</p>
+                        <p class="govuk-body-s">Published: 
+                            {%if post.attributes.Publication_date_override%}{{post.attributes.Publication_date_override | date('DD MMMM YYYY') }}{%else%}{{post.attributes.publishedAt | date('DD MMMM YYYY')}}{%endif%}</p>
+
+                            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+                        {% endfor %}
+                    </div>
+
+                    <div class="govuk-grid-column-one-third">
+
+
+                    </div>
+                </div>
+            </div>
+
+        {% endblock %}
+
+    {% endblock %}

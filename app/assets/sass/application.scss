@@ -1,0 +1,438 @@
+// global styles for <a> and <p> tags
+$govuk-global-styles: true;
+$govuk-new-link-styles: true;
+
+// We can't mount GOV.UK Frontend's assets at root as it's done automatically by the extensions framework.
+$govuk-assets-path: '/govuk/assets/';
+
+// Import GOV.UK Frontend and any extension styles if extensions have been configured
+@import ".tmp/sass/extensions";
+
+// Patterns that aren't in Frontend
+@import "patterns/contents-list";
+@import "patterns/mainstream-guide";
+@import "patterns/pagination";
+@import "patterns/related-items";
+@import "patterns/task-list";
+
+// Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+span,
+div,
+table,
+th,
+td,
+blockquote,
+li,
+tr {
+    font-family:
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Oxygen-Sans,
+        Ubuntu,
+        Cantarell,
+        "Helvetica Neue",
+        sans-serif !important;
+}
+
+
+$dfe-blue: #003a69;
+$accent: #347ca9;
+
+
+
+.govuk-header {
+    background-color: $dfe-blue;
+
+    border-bottom: 10px solid $accent;
+}
+
+.govuk-header__container {
+    position: relative;
+    margin-bottom: -10px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    border-bottom: none;
+}
+
+.govuk-header__product-name,
+.govuk-header__logotype-text {
+    line-height: 2.5rem !important;
+    font-size: 1.2rem;
+}
+
+.govuk-header__logotype-crown-fallback-image {
+    height: 45px;
+    width: 45px;
+}
+
+.govuk-header__link--homepage {
+
+    padding-bottom: 10px;
+}
+
+.govuk-header__logotype {
+    margin-right: 0px;
+}
+
+.govuk-header__logo {
+    width: 65%;
+    padding-right: 15px;
+    float: left;
+    vertical-align: top;
+}
+
+.govuk-width-container {
+    max-width: 1200px;
+    margin-left: 15px auto;
+    margin-right: 15px auto;
+}
+
+
+.dfe-content img {
+    height: auto;
+    max-width: 100%;
+    width: auto;
+    @include govuk-responsive-margin(4, "top");
+    @include govuk-responsive-margin(3, "bottom");
+    -webkit-box-shadow: 0px 0px 19px 0px #AEAEAE; 
+    box-shadow: 0px 0px 19px 0px #AEAEAE;
+}
+
+
+
+.dfe-content ol,
+.dfe-content ul {
+    @include govuk-responsive-margin(4, "left");
+    @include govuk-responsive-padding(0, "left");
+}
+
+.dfe-content li {
+    @include govuk-font($size: 19);
+    @include govuk-text-colour;
+    margin-top: 0;
+    @include govuk-responsive-margin(2, "bottom");
+}
+
+.dfe-content ul li {
+    padding-left: govuk-spacing(2);
+    list-style-type: disc;
+}
+
+.dfe-content ol li {
+    padding-left: govuk-spacing(2);
+    list-style-type: decimal;
+}
+
+
+.dfe-content h1 {
+    @include govuk-font($size: 48, $weight: bold);
+    margin-bottom: govuk-spacing(3);
+}
+
+.dfe-content h2 {
+    @include govuk-font($size: 36, $weight: bold);
+    margin-bottom: govuk-spacing(3);
+}
+
+.dfe-content h3 {
+    @include govuk-font($size: 24, $weight: bold);
+    margin-bottom: govuk-spacing(3);
+}
+
+.dfe-content h4 {
+    @include govuk-font($size: 19, $weight: bold);
+}
+
+
+
+
+
+
+.cards>ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.card+.card {
+    margin-top: 1.5rem;
+}
+
+@supports (display: grid) {
+    .cards>ul {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+        grid-column-gap: 1rem;
+        grid-row-gap: 1rem;
+    }
+
+    .card+.card {
+        margin-top: 0;
+    }
+
+    @media (max-width: 400px) {
+        .cards>ul {
+            grid-gap: 4.5rem;
+        }
+    }
+
+    .cards.cards-single>ul {
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+
+        >li {
+            width: 85%;
+
+
+        }
+    }
+}
+
+
+
+.card {
+    border: 1px solid $accent;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.card .text {
+    padding: 1rem;
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.cards.top-text .card .text {
+    flex: 0 0 auto;
+}
+
+
+
+@supports (display: grid) {
+    .cards.top-text>ul {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+        grid-column-gap: 1.5rem;
+        grid-row-gap: 1.5rem;
+    }
+
+    .cards.top-text .card+.card {
+        margin-top: 0;
+    }
+
+    @media (max-width: 400px) {
+        .cards.top-text>ul {
+            grid-gap: 4.5rem;
+        }
+    }
+}
+
+.card {
+    background-color: #fff;
+
+    h3 {
+        font-size: 19px;
+        padding-top: 0px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+
+    h3 a {
+        text-decoration: none;
+    }
+
+    h3 a::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    h3 a:focus {
+        outline: none;
+        text-decoration: underline;
+    }
+
+    h3,
+    p,
+    a {
+        color: #0b0c0c;
+    }
+
+}
+
+
+
+.card:focus-within,
+.card:hover {
+    box-shadow: 0 0 0 0.25rem;
+}
+
+.card:focus-within h2 a:focus {
+    text-decoration: none;
+}
+
+.card small {
+    display: block;
+}
+
+.card small a {
+    position: relative;
+    padding: 0.5rem 0.5rem 0.5rem 0;
+}
+
+.card small a:hover,
+.card small a:focus {
+    font-weight: bold;
+}
+
+.card .text>*+* {
+    margin-top: 0.75rem;
+}
+
+.card .text> :last-child {
+    margin-top: auto;
+    padding-top: 0px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.card .text p.meta {
+    color: #505a5f;
+    font-size: 1rem !important;
+}
+
+.card .text h3+p {
+    margin-top: 15px !important;
+}
+
+
+blockquote {
+    font-stretch: expanded;
+}
+
+.govuk-list--spaced>li {
+    margin-bottom: 15px !important;
+}
+
+
+.bottom {
+    margin-bottom: 0px;
+    position: relative;
+}
+
+.blog-meta dl{
+    margin-bottom:0px;
+}
+
+
+.blog-meta dl dt {
+    width: 130px;
+    font-weight: normal;
+    text-align: left;
+    overflow: hidden;
+    padding: 0px;
+    display: table-cell;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: #ffffff;
+}
+
+.blog-meta dl dd {
+    display: table-cell;
+    margin-left: 0;
+    margin-inline-start: 40px;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: #ffffff;
+}
+
+.masthead {
+    background-color: $accent;
+    padding: 0px 0 50px 0;
+    margin-bottom: 40px;
+
+    .govuk-heading-xl {
+        color: #ffffff;
+        margin-bottom: 30px;
+        margin-top: 40px;
+    }
+
+    .govuk-caption-l {
+
+        color: #ffffff;
+        margin-bottom: 0px;
+        margin-top: 30px;
+    }
+
+    .govuk-caption-l+.govuk-heading-xl {
+
+        margin-top: 10px;
+    }
+
+    p {
+        color: #ffffff;
+        @include govuk-font($size: 27);
+    }
+
+    .govuk-breadcrumbs {
+        margin-top: 0px;
+    }
+
+    .govuk-breadcrumbs__link:link,
+    .govuk-breadcrumbs__link:visited {
+        color: #ffffff;
+    }
+
+    .govuk-breadcrumbs__list-item:before {
+
+        border-color: #ffffff;
+    }
+
+    .govuk-breadcrumbs__link:focus {
+        outline: 3px solid transparent;
+        color: #0b0c0c;
+        background-color: #ffdd00;
+        box-shadow: 0 -2px #ffdd00, 0 4px #0b0c0c;
+        text-decoration: none;
+    }
+
+    +.bottom {
+        margin-bottom: -30px;
+        position: relative;
+    }
+
+
+}
+
+.dfe-panel {
+    margin-top: 35px;
+    background: $accent;
+    padding: 25px 25px 15px 25px;
+
+    &>*, a, a:link, a:visited {
+        color: #ffffff !important;
+    }
+
+    a:focus {
+        color: #1b1c1c !important;
+    }
+}
+

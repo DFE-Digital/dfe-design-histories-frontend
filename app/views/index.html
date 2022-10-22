@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Design Histories
+{% endblock %}
+
+{% block main %}
+
+  <div class="masthead">
+    <div class="govuk-width-container">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <h1 class="govuk-heading-xl">Design Histories</h1>
+          <p>Design histories are a way of documenting changing to a service over time.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% block content %}
+
+    <div class="govuk-width-container govuk-!-margin-bottom-9">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+          <h2 class="govuk-heading-l">Services</h2>
+           <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+
+          {% for service in services.data %}
+            <h2>
+              <a href="/{{service.attributes.Slug}}">{{service.attributes.Title}}</a>
+            </h2>
+            <p>{{service.attributes.Description}}</p>
+
+
+                        <p class="govuk-body-s">From:  {{service.attributes.team.data.attributes.Title}}</p>
+
+            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+          {% endfor %}
+        </div>
+
+        <div class="govuk-grid-column-one-third">
+
+          <aside class="app-related-items" role="complementary">
+            <h2 class="govuk-heading-m" id="subsection-title">Design histories by team</h2>
+            <nav role="navigation" aria-labelledby="subsection-title">
+              <ul class="govuk-list govuk-list--spaced">
+                {% for team in teams.data %}
+                  <li>
+                    <a href="/team/{{team.attributes.Slug}}">{{team.attributes.Title}}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </nav>
+          </aside>
+
+          <div class="dfe-panel">
+            <h2 class="govuk-heading-s" id="subsection-title">Start a design history for your service</h2>
+            <p>
+              <a href="">Find out how <span class="govuk-visually-hidden"> to start a design history for your service</span></a>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  {% endblock %}
+
+{% endblock %}
