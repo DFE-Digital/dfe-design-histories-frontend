@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Design Histories
+{% endblock %}
+
+{% block main %}
+
+  <div class="masthead">
+    <div class="govuk-width-container">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <h1 class="govuk-heading-xl">{{data.data.attributes.Title}}</h1>
+          <div class="bottom blog-meta">
+        <dl>
+          <dt>Updated:</dt>
+          <dd>{{data.updatedAt | date('DD MMMM YYYY')}}</dd>
+        </dl>
+      </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% block content %}
+
+    <div class="govuk-width-container govuk-!-margin-bottom-9">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+          <section class="dfe-content">
+        {% markdown %}{{data.data.attributes.Body | safe}}{% endmarkdown %}
+      </section>
+        </div>
+      </div>
+    </div>
+
+  {% endblock %}
+
+{% endblock %}
