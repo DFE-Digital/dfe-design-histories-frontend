@@ -4,7 +4,30 @@ const fetch = require('node-fetch')
 const  axios = require('axios')
 
 // Add your routes here - above the module.exports line
-
+router.get('/roadmap', function (req, res) {
+    
+  
+      var config = {
+          method: 'get',
+          url: `${process.env.cmsurl}api/service-pages/3`,
+          headers: {
+            Authorization: 'Bearer ' + process.env.apikey,
+          },
+        }
+      
+        axios(config)
+          .then(function (response) {
+            var data = response.data
+  
+              console.log(data.error)
+      
+            res.render('generic-page',{data})
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+    
+  })
 
 router.get('/accessibility-statement', function (req, res) {
     
