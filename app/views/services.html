@@ -43,7 +43,7 @@ Posts
                 <div class="govuk-grid-column-two-thirds">
                     <h2 class="govuk-heading-l">Services for the team</h2>
                     <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-
+                    {% set posts = false%}
                     {% for service in services
                         .data[0]
                         .attributes
@@ -53,7 +53,7 @@ Posts
                         {% set authSessionKey = 'auth-' + service.attributes.Slug%}
 
                         {% if not service.attributes.Password %}
-
+                            {% set posts = true%}
                             <h2>
                                 <a href="/{{service.attributes.Slug}}">{{service.attributes.Title}}</a>
                             </h2>
@@ -61,6 +61,7 @@ Posts
 
                             <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
                         {% elseif service.attributes.Password and data[authSessionKey] === true%}
+                            {% set posts = true%}
                             <h2>
                                 <a href="/{{service.attributes.Slug}}">{{service.attributes.Title}}</a>
                             </h2>
@@ -70,12 +71,18 @@ Posts
 
                         {% endif %}
                     {% endfor %}
-                </div>
 
-                <div class="govuk-grid-column-one-third"></div>
+                    {% if posts === false %}
+
+                        <p>The team don't have any published design histories at the moment.</p>
+
+                        {% endif%}
+                    </div>
+
+                    <div class="govuk-grid-column-one-third"></div>
+                </div>
             </div>
-        </div>
+
+        {% endblock %}
 
     {% endblock %}
-
-{% endblock %}
