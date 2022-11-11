@@ -37,51 +37,53 @@ Posts
     </div>
 
     {% block content %}
+        <main>
 
-        <div class="govuk-width-container govuk-!-margin-bottom-9">
-            <div class="govuk-grid-row">
-                <div class="govuk-grid-column-two-thirds">
-                    <h2 class="govuk-heading-l">Services for the team</h2>
-                    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-                    {% set posts = false%}
-                    {% for service in services
-                        .data[0]
-                        .attributes
-                        .services
-                        .data %}
+            <div class="govuk-width-container govuk-!-margin-bottom-9">
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-two-thirds">
+                        <h2 class="govuk-heading-l">Services for the team</h2>
+                        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                        {% set posts = false%}
+                        {% for service in services
+                            .data[0]
+                            .attributes
+                            .services
+                            .data %}
 
-                        {% set authSessionKey = 'auth-' + service.attributes.Slug%}
+                            {% set authSessionKey = 'auth-' + service.attributes.Slug%}
 
-                        {% if not service.attributes.Password %}
-                            {% set posts = true%}
-                            <h2>
-                                <a href="/{{service.attributes.Slug}}">{{service.attributes.Title}}</a>
-                            </h2>
-                            <p>{{service.attributes.Description}}</p>
+                            {% if not service.attributes.Password %}
+                                {% set posts = true%}
+                                <h2>
+                                    <a href="/{{service.attributes.Slug}}">{{service.attributes.Title}}</a>
+                                </h2>
+                                <p>{{service.attributes.Description}}</p>
 
-                            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-                        {% elseif service.attributes.Password and data[authSessionKey] === true%}
-                            {% set posts = true%}
-                            <h2>
-                                <a href="/{{service.attributes.Slug}}">{{service.attributes.Title}}</a>
-                            </h2>
-                            <p>{{service.attributes.Description}}</p>
+                                <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                            {% elseif service.attributes.Password and data[authSessionKey] === true%}
+                                {% set posts = true%}
+                                <h2>
+                                    <a href="/{{service.attributes.Slug}}">{{service.attributes.Title}}</a>
+                                </h2>
+                                <p>{{service.attributes.Description}}</p>
 
-                            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                                <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-                        {% endif %}
-                    {% endfor %}
+                            {% endif %}
+                        {% endfor %}
 
-                    {% if posts === false %}
+                        {% if posts === false %}
 
-                        <p>The team don't have any published design histories at the moment.</p>
+                            <p>The team don't have any published design histories at the moment.</p>
 
-                        {% endif%}
+                            {% endif%}
+                        </div>
+
+                        <div class="govuk-grid-column-one-third"></div>
                     </div>
-
-                    <div class="govuk-grid-column-one-third"></div>
                 </div>
-            </div>
+            </main>
 
         {% endblock %}
 
