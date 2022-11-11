@@ -12,11 +12,11 @@ Design Histories
         <div class="govuk-grid-column-two-thirds">
           <h1 class="govuk-heading-xl">{{data.data.attributes.Title}}</h1>
           <div class="bottom blog-meta">
-        <dl>
-          <dt>Updated:</dt>
-          <dd>{{data.updatedAt | date('DD MMMM YYYY')}}</dd>
-        </dl>
-      </div>
+            <dl>
+              <dt>Updated:</dt>
+              <dd>{{data.updatedAt | date('DD MMMM YYYY')}}</dd>
+            </dl>
+          </div>
         </div>
       </div>
     </div>
@@ -24,17 +24,18 @@ Design Histories
 
   {% block content %}
 
-    <div class="govuk-width-container govuk-!-margin-bottom-9">
-      <div class="govuk-grid-row">
-        <div class="govuk-grid-column-two-thirds">
+    <main id="main-content">
+      <div class="govuk-width-container govuk-!-margin-bottom-9">
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">
 
-          <section class="dfe-content">
-        {% markdown %}{{data.data.attributes.Body | safe}}{% endmarkdown %}
-      </section>
+            <section class="dfe-content">
+              {% markdown %}{{data.data.attributes.Body | safe}}{% endmarkdown %}
+            </section>
+          </div>
         </div>
       </div>
     </div>
-
   {% endblock %}
 
 {% endblock %}
