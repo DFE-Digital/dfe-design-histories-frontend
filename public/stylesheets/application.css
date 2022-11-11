@@ -8591,6 +8591,7 @@ tr {
 
 .govuk-header__link--homepage {
   padding-bottom: 10px;
+  margin-right: 0px;
 }
 
 .govuk-header__logotype {
@@ -8602,6 +8603,12 @@ tr {
   padding-right: 15px;
   float: left;
   vertical-align: top;
+}
+
+.govuk-header__content {
+  width: 35%;
+  padding-left: 15px;
+  float: left;
 }
 
 .govuk-width-container {

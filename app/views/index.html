@@ -28,16 +28,25 @@ Design Histories
 
 
           {% for service in services.data %}
-            <h2>
-              <a href="/{{service.attributes.Slug}}">{{service.attributes.Title}}</a>
-            </h2>
-            <p>{{service.attributes.Description}}</p>
+          {% set authSessionKey = 'auth-' + service.attributes.Slug%}
 
+                        {% if not service.attributes.Password %}
 
-                        <p class="govuk-body-s">From:  {{service.attributes.team.data.attributes.Title}}</p>
+                            <h2>
+                                <a href="/{{service.attributes.Slug}}">{{service.attributes.Title}}</a>
+                            </h2>
+                            <p>{{service.attributes.Description}}</p>
 
-            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                        {% elseif service.attributes.Password and data[authSessionKey] === true%}
+                            <h2>
+                                <a href="/{{service.attributes.Slug}}">{{service.attributes.Title}}</a>
+                            </h2>
+                            <p>{{service.attributes.Description}}</p>
 
+                            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+                        {% endif %}
           {% endfor %}
         </div>
 
@@ -47,6 +56,7 @@ Design Histories
             <h2 class="govuk-heading-m">Design histories by team</h2>
             <nav role="navigation" aria-labelledby="subsection-title">
               <ul class="govuk-list govuk-list--spaced">
+ 
                 {% for team in teams.data %}
                   <li>
                     <a href="/team/{{team.attributes.Slug}}">{{team.attributes.Title}}</a>

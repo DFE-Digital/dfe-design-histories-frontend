@@ -27,7 +27,7 @@ Posts
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-two-thirds">
 
-  <span class="govuk-caption-l">{{services.data[0].attributes.team.data.attributes.Title}}</span>
+                    <span class="govuk-caption-l">{{services.data[0].attributes.team.data.attributes.Title}}</span>
                     <h1 class="govuk-heading-xl">{{services.data[0].attributes.Title}}</h1>
 
                     <p>{{services.data[0].attributes.Description}}</p>
@@ -38,32 +38,44 @@ Posts
 
     {% block content %}
 
-
         <div class="govuk-width-container govuk-!-margin-bottom-9">
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-two-thirds">
                     <h2 class="govuk-heading-l">Services for the team</h2>
                     <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-                    {% for service in services.data[0].attributes.services.data %}
+                    {% for service in services
+                        .data[0]
+                        .attributes
+                        .services
+                        .data %}
 
-                        <h2>
-                            <a href="/{{service.attributes.Slug}}">{{service.attributes.Title}}</a>
-                        </h2>
-                        <p>{{service.attributes.Description}}</p>
-                       
+                        {% set authSessionKey = 'auth-' + service.attributes.Slug%}
+
+                        {% if not service.attributes.Password %}
+
+                            <h2>
+                                <a href="/{{service.attributes.Slug}}">{{service.attributes.Title}}</a>
+                            </h2>
+                            <p>{{service.attributes.Description}}</p>
+
+                            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                        {% elseif service.attributes.Password and data[authSessionKey] === true%}
+                            <h2>
+                                <a href="/{{service.attributes.Slug}}">{{service.attributes.Title}}</a>
+                            </h2>
+                            <p>{{service.attributes.Description}}</p>
+
                             <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-                        {% endfor %}
-                    </div>
-
-                    <div class="govuk-grid-column-one-third">
-
-
-                    </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
-            </div>
 
-        {% endblock %}
+                <div class="govuk-grid-column-one-third"></div>
+            </div>
+        </div>
 
     {% endblock %}
+
+{% endblock %}

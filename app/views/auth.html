@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Design Histories
+{% endblock %}
+
+{% block main %}
+
+  <div class="masthead">
+    <div class="govuk-width-container">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <h1 class="govuk-heading-xl">Password required</h1>
+          <p>This service history and it's posts are protected by a password.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% block content %}
+
+<div class="govuk-width-container govuk-!-margin-bottom-9">
+    <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+{%if data['error']%}
+<div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" data-module="govuk-error-summary">
+  <h2 class="govuk-error-summary__title" id="error-summary-title">
+    There is a problem
+  </h2>
+  <div class="govuk-error-summary__body">
+    <ul class="govuk-list govuk-error-summary__list">
+      <li>
+        <a href="#password">{{data['error']}}</a>
+      </li>
+     
+    </ul>
+  </div>
+</div>
+{% endif %}
+
+        <form action="/auth/{{services.data[0].attributes.Slug}}" method="post">
+            <div class="govuk-form-group {% if data['error'] %}govuk-form-group--error{% endif%}">
+            <h2 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="password">
+                Password
+                </label>
+            </h2>
+            {% if data['error'] %} <p id="event-name-error" class="govuk-error-message">
+    <span class="govuk-visually-hidden">Error:</span> {{data['error']}}
+  </p>{% endif%}
+            <input class="govuk-input {% if data['error'] %}govuk-input--error{% endif%}" id="password" name="password" type="text">
+            </div>
+            <button class="govuk-button" data-module="govuk-button" type="submit">
+            Submit
+            </button>
+        </form>
+    </div>
+    </div>
+</div>
+
+  {% endblock %}
+
+{% endblock %}
