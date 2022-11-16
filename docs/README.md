@@ -1,6 +1,27 @@
 # Documentation
 
-[Documentation and examples](https://govuk-prototype-kit.herokuapp.com/docs)
+This service is in Beta.
 
-Documentation is also available when running the app locally at http:localhost:3000/docs
+This is the code for the design history frontend website hosted at [https://design-histories.education.gov.uk/](https://design-histories.education.gov.uk/)
+
+You can run this locally:
+
+## Run locally
+
+Clone the repository
+
+Run `npm install`
+
+Set config variables in .env file:
+
+apikey=x
+cmsurl=
+
+Then run `npm start`
+
+Running the CMS Locally
+
+You also need to run the Strapi CMS Locally - email designops@digital.education.gov.uk to get help with this until we have published the guidance for that. 
+
+
 
