@@ -36,14 +36,14 @@
                 <div class="govuk-grid-column-two-thirds">
                     <span class="govuk-caption-l">Post</span>
                     <h1 class="govuk-heading-xl">{{data.Title}}</h1>
-                  
+                    <p class="govuk-body">{{data.Lede}}</p>
 
                     <div class="bottom blog-meta">
-        <dl>
-          <dt>Published:</dt>
-          <dd>{%if data.Publication_date%}{{data.Publication_date | date('DD MMMM YYYY') }}{%else%}{{data.publishedAt | date('DD MMMM YYYY')}}{%endif%}</dd>
-        </dl>
-      </div>
+                      <dl>
+                        <dt>Published:</dt>
+                        <dd>{%if data.Publication_date%}{{data.Publication_date | date('DD MMMM YYYY') }}{%else%}{{data.publishedAt | date('DD MMMM YYYY')}}{%endif%}</dd>
+                      </dl>
+                   </div>
                 </div>
             </div>
         </div>
@@ -56,14 +56,9 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-
-
-  <p class="govuk-body">{{data.Lede}}</p>
-
       <section class="dfe-content">
         {% markdown %}{{data.Body | safe}}{% endmarkdown %}
       </section>
-
 
 
     </div>
